@@ -1,6 +1,6 @@
 const database = 'mavidurak';
 const username = 'root';
-const password = 'Vio1996';
+const password = '123456';
 const host = 'localhost';
 const port = '3306';
 

@@ -8,7 +8,6 @@ export default async (req, res, next) => {
     path => path === req.fixed_url
   ) > -1;
   const token = req.get(TOKEN_KEY);
-  console.log('token', token)
 
   if (token) { 
     const { user } = await models.token.findOne({
@@ -20,7 +19,6 @@ export default async (req, res, next) => {
         }
       ]
     });
-    console.log('user', user.toJSON());
     req.user = user.toJSON();
   }
 

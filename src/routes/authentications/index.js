@@ -68,19 +68,16 @@ const register = async (req, res, next) => {
   let user = await models.user.findOne({
     where: { [Op.or]: { username: username.trim(), email: email.trim() } }
   });
-  console.log('3')
 
   if (user) {
     return res.send(400, { error: 'E-posta adresi veya kullanıcı adı kullanılıyor!' });
   }
-  console.log('4')
 
   const {
     salt: password_salt,
     hash: password_hash
   } = createSaltHashPassword(password);
   const ip_address = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-  console.log('5')
   
   user = await models.user.create({
     username,
@@ -89,15 +86,12 @@ const register = async (req, res, next) => {
     password_salt,
     password_hash
   });
-  console.log('6')
   const token = await user.createAccessToken(ip_address);
-  console.log('7')
 
   res.send(201, { user: user.toJSON(), token: token.toJSON() });
 };
 
 const me = (req, res, next) => {
-  console.log('???');
   res.send(200, req.user);
 }
 
