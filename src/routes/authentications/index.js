@@ -101,6 +101,6 @@ export default {
   inject: (router) => {
     router.get('/me', me);
     router.post('/register', register);
-    router.post('/register', register);
+    router.post('/login', login);
   }
 };
